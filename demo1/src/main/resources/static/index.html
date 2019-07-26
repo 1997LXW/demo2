@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1">
+    <THEAD>
+        <tr>
+            <th>部门编号</th>
+        </tr>
+        <tr>
+            <th>
+                部门名称
+            </th>
+        </tr>
+    </THEAD>
+    <tbody id="tb1">
+
+    </tbody>
+</table>
+</body>
+<script src="js/jquery-1.12.4.js"></script>
+<script>
+    function fnLoad() {
+        $.ajax("http://127.0.0.1:8080/api/load",{
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+
+                $("#tb1").html("");
+                $.each(data,function (i,itme) {
+                    $html="<tr><td>"+itme.id+"</td><td><a href='javascrpit:void(0)' onclick='fnclick("+i+")'>"+itme.name+"</a></td></tr><tr id='u\"+i+\"' style='display: none'><table><thead><tr><td>姓名</td><td>工资</td><td>入职日期</td><td>奖金</td><td>操作</td></tr></thead><tbody>";
+                    $.each(itme.userList,function (j,item2) {
+                        $html2="<tr><td>"+item2.name+"</td><td>"+item2.salary+"</td><td>"+itme2.date+"</td><td>"+item2.+"</td></tr></tbody></table></tr>"
+                    })
+                    $("#tb1").append($html);
+                })
+            }
+        })
+    }
+    fnLoad();
+    function fnclick(id) {
+        $.ajax("http://127.0.0.1:8080/api/load",{
+            type:"get",
+            dataType:"json",
+            success:function (data) {
+
+                $("#tb1").html("");
+                $.each(data,function (i,itme) {
+                    $html="<tr><td>"+itme.id+"</td><td><a href='javascrpit:void(0)' onclick=''>"+itme.name+"</a></td></tr>";
+                    $("#tb1").append($html);
+                })
+            }
+        })
+    }
+</script>
+</html>
