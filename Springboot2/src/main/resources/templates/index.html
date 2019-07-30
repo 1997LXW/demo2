@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>欢迎登陆[[${session.user.name}]]</h1>
+<a href="/c/page?pageNum=1&pageSize=3" th:text="学生列表"></a>
+<table th:if="${page!=null}">
+    <thead>
+        <tr>
+            <th>
+                学号
+            </th>
+            <th>
+                姓名
+            </th>
+            <th>
+                班级
+            </th>
+            <th>
+                操作
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item,iter:${page.list}">
+            <td th:text="${iter.count}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.grade}"></td>
+            <td><a>查看</a></td>
+        </tr>
+    </tbody>
+</table>
+</body>
+</html>
